@@ -1,0 +1,11 @@
+.form-content {
+    display: flex;
+    gap: 1rem
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}

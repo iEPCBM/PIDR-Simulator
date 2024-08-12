@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
+    <script src="pidr.js"></script>
+    <script src="ctl.js"></script>
+    <link rel="stylesheet" href="base.css">
+</head>
+<body>
+    <h1>
+        Симуляция ПИД-регулятора
+    </h1>
+    <form>
+        <fieldset>
+            <legend>Параметры ПИД-регулятора</legend>
+            <div class="form-content">
+                <div class="column">
+                    <div class="row">
+                        <label for="y_min">Y_MIN:</label>
+                        <input type="number" id="y_min" name="y_min" step="0.01" value="-200">
+                    </div>
+                    <div class="row">
+                        <label for="k">Коэффициент усиления (K):</label>
+                        <input type="number" id="k" name="k" step="0.01" value="1">
+                    </div>
+                    <div class="row">
+                        <label for="td">Дифференциальная составляющая (TD):</label>
+                        <input type="number" id="td" name="td" step="0.01" value="1">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <label for="y_max">Y_MAX:</label>
+                        <input type="number" id="y_max" name="y_max" step="0.01" value="200">
+                    </div>
+                    <div class="row">
+                        <label for="ti">Интегральная составляющая (TI):</label>
+                        <input type="number" id="ti" name="ti" step="0.01" value="1">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Параметры регулируемого процесса</legend>
+            <div class="form-content">
+                <div class="column">
+                    <div class="row">
+                        <label for="y_min_c">Y_MIN:</label>
+                        <input type="number" id="y_min_c" name="y_min_c" step="0.01" value="-200">
+                    </div>
+                    <div class="row">
+                        <label for="dk">Коэффициент отклонения (dK):</label>
+                        <input type="number" id="dk" name="dk" step="0.01" value="0.4">
+                    </div>
+                    <div class="row">
+                        <label for="y0">Начальное значение (y0):</label>
+                        <input type="number" id="y0" name="y0" step="0.01" value="1">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <label for="y_max_c">Y_MAX:</label>
+                        <input type="number" id="y_max_c" name="y_max_c" step="0.01" value="200">
+                    </div>
+                    <div class="row">
+                        <label for="delta">Абсолютная погрешность:</label>
+                        <input type="number" id="delta" name="delta" step="0.01" value="0">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Параметры симуляции</legend>
+            <div class="form-content">
+                <div class="column">
+                    <div class="row">
+                        <label for="step">Шаг, сек:</label>
+                        <input type="number" id="step" name="step" step="0.01" value="0.2">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <label for="sval">Задатка:</label>
+                        <input type="number" id="sval" name="sval" step="0.01" value="10">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <input id="bt_start" type="button" value="Старт" onclick="start()">
+        <input id="bt_pause" type="button" value="Пауза/Возобновить" onclick="pause()">
+        <input id="bt_reset" type="button" value="Сброс" onclick="reset()">
+        <input id="bt_reset" type="button" value="Очистить" onclick="clrplot()">
+    </form>
+    <div class="plot-wrapper">
+        <canvas id="plot"></canvas>
+    </div>
+      
+    <script>
+        const ctx = document.getElementById('plot');
+      
+        let chart = new Chart(ctx, plt_config);
+    </script>    
+</body>
+</html>
